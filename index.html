@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Captura y Predicción de Dígitos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Captura y Predicción de Dígitos</h1>
+  </header>
+  <main>
+    <!-- Sección de cámara en vivo -->
+    <section id="camera-section">
+      <div class="container">
+        <video id="video" autoplay playsinline></video>
+        <button id="capture-btn" class="btn">Sacar Foto</button>
+      </div>
+    </section>
+
+    <!-- Sección de previsualización -->
+    <section id="preview-section" class="hidden">
+      <div class="container">
+        <canvas id="canvas" width="280" height="280"></canvas>
+        <div class="btn-group">
+          <button id="retake-btn" class="btn">Volver a Sacar</button>
+          <button id="send-btn" class="btn">Enviar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de carga -->
+    <section id="loading-section" class="hidden">
+      <div class="container">
+        <p class="loading-text">Cargando predicción...</p>
+      </div>
+    </section>
+
+    <!-- Sección de resultado -->
+    <section id="result-section" class="hidden">
+      <div class="container">
+        <p class="result-text">Predicción: <span id="prediction"></span></p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Captura de Dígitos</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

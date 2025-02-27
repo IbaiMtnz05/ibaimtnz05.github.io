@@ -13,38 +13,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const ctx = canvas.getContext('2d');
 
-  // Acceder a la cámara
+  // Acceso a la cámara con getUserMedia
   navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
     .then(stream => {
       video.srcObject = stream;
     })
     .catch(err => {
-      console.error("Error al acceder a la cámara: ", err);
+      console.error("Error al acceder a la cámara:", err);
       alert("No se pudo acceder a la cámara.");
     });
 
-  // Capturar la imagen actual del video
+  // Capturar imagen del video
   captureBtn.addEventListener('click', () => {
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
     cameraSection.classList.add('hidden');
     previewSection.classList.remove('hidden');
   });
 
-  // Permitir volver a capturar la imagen
+  // Retomar captura
   retakeBtn.addEventListener('click', () => {
     previewSection.classList.add('hidden');
     cameraSection.classList.remove('hidden');
   });
 
-  // Enviar imagen y simular la predicción
+  // Enviar imagen y simular predicción
   sendBtn.addEventListener('click', () => {
     previewSection.classList.add('hidden');
     loadingSection.classList.remove('hidden');
 
-    // Simular llamada a una API (por ejemplo, con setTimeout)
+    // Simulación de llamada a API
     setTimeout(() => {
       loadingSection.classList.add('hidden');
-      // Aquí se integraría la respuesta real del modelo
       const randomPrediction = Math.floor(Math.random() * 10);
       predictionSpan.textContent = randomPrediction;
       resultSection.classList.remove('hidden');

@@ -1,74 +1,65 @@
-	<!DOCTYPE html>
-	<html lang="es">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Reconocimiento de Dígitos</title>
-		<link rel="stylesheet" href="styles.css">
-	</head>
-	<body>
-		<div class="container">
-			<h1>Reconocimiento de Dígitos</h1>
-			
-			<div class="input-section">
-				<div class="tabs">
-					<button class="tab-btn active" id="camera-tab">Cámara</button>
-					<button class="tab-btn" id="upload-tab">Subir imagen</button>
-				</div>
-				
-				<div class="tab-content" id="camera-content">
-					<div class="video-container">
-						<video id="video" autoplay playsinline></video>
-						<canvas id="canvas-overlay"></canvas>
-						<div class="capture-frame"></div>
-					</div>
-					<div class="controls">
-						<button id="capture-btn" class="action-btn">Capturar</button>
-						<button id="flip-camera" class="action-btn">Cambiar cámara</button>
-					</div>
-				</div>
-				
-				<div class="tab-content hidden" id="upload-content">
-					<div class="upload-area" id="drop-area">
-						<p>Arrastra una imagen aquí o</p>
-						<input type="file" id="file-input" accept="image/*">
-						<label for="file-input" class="file-label">Seleccionar archivo</label>
-					</div>
-				</div>
-			</div>
-			
-			<div class="preview-section hidden" id="preview-section">
-				<h2>Vista previa</h2>
-				<div class="preview-container">
-					<div class="original-preview">
-						<h3>Original</h3>
-						<img id="preview-img" src="#" alt="Imagen capturada">
-					</div>
-					<div class="processed-preview">
-						<h3>Procesada (28x28)</h3>
-						<canvas id="processed-canvas" width="28" height="28"></canvas>
-						<div class="processed-display">
-							<canvas id="display-canvas" width="140" height="140"></canvas>
-						</div>
-					</div>
-				</div>
-				<div class="result-container">
-					<h3>Predicción</h3>
-					<div id="prediction-result">-</div>
-					<div class="confidence-bars" id="confidence-container"></div>
-				</div>
-				<div class="controls">
-					<button id="process-btn" class="action-btn">Procesar</button>
-					<button id="back-btn" class="action-btn secondary">Volver</button>
-				</div>
-			</div>
-			
-			<div id="loading" class="loading hidden">
-				<div class="spinner"></div>
-				<p>Procesando...</p>
-			</div>
-		</div>
-		
-		<script src="script.js"></script>
-	</body>
-	</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reconocimiento de Dígitos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Reconocimiento de Dígitos</h1>
+        
+        <!-- Pantalla de captura -->
+        <div id="capture-screen" class="screen">
+            <div class="info-box">
+                <p>Centra el dígito en el recuadro para mejores resultados</p>
+            </div>
+            
+            <div class="camera-container">
+                <video id="video" autoplay playsinline></video>
+                <div class="capture-frame"></div>
+            </div>
+            
+            <button id="capture-btn" class="primary-btn">Capturar foto</button>
+        </div>
+        
+        <!-- Pantalla de confirmación -->
+        <div id="confirm-screen" class="screen hidden">
+            <div class="info-box">
+                <p>¿Deseas utilizar esta imagen?</p>
+            </div>
+            
+            <div class="preview-container">
+                <img id="preview-img" src="#" alt="Vista previa">
+            </div>
+            
+            <div class="button-group">
+                <button id="retake-btn" class="secondary-btn">Volver a capturar</button>
+                <button id="confirm-btn" class="primary-btn">Enviar</button>
+            </div>
+        </div>
+        
+        <!-- Pantalla de carga -->
+        <div id="loading-screen" class="screen hidden">
+            <div class="loader"></div>
+            <p>Procesando imagen...</p>
+        </div>
+        
+        <!-- Pantalla de resultado -->
+        <div id="result-screen" class="screen hidden">
+            <div class="result-container">
+                <h2>Resultado</h2>
+                <div class="digit-result">
+                    <span id="result-digit">-</span>
+                </div>
+                <p>Predicción del dígito</p>
+            </div>
+            
+            <button id="restart-btn" class="primary-btn">Nueva captura</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

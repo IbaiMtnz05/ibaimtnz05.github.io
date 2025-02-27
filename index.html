@@ -1,54 +1,74 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Captura y Predicción de Dígitos</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- Fuente Google: Roboto -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
-</head>
-<body>
-  <header>
-    <h1>Captura y Predicción</h1>
-  </header>
-  <main>
-    <!-- Sección de cámara -->
-    <section id="camera-section">
-      <div class="container">
-        <video id="video" autoplay playsinline></video>
-        <button id="capture-btn" class="btn">Sacar Foto</button>
-      </div>
-    </section>
-
-    <!-- Sección de previsualización -->
-    <section id="preview-section" class="hidden">
-      <div class="container">
-        <canvas id="canvas" width="280" height="280"></canvas>
-        <div class="btn-group">
-          <button id="retake-btn" class="btn">Volver a Sacar</button>
-          <button id="send-btn" class="btn">Enviar</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Sección de carga -->
-    <section id="loading-section" class="hidden">
-      <div class="container">
-        <p class="loading-text">Cargando predicción...</p>
-      </div>
-    </section>
-
-    <!-- Sección de resultado -->
-    <section id="result-section" class="hidden">
-      <div class="container">
-        <p class="result-text">Predicción: <span id="prediction"></span></p>
-      </div>
-    </section>
-  </main>
-  <footer>
-    <p>&copy; 2025 Captura de Dígitos</p>
-  </footer>
-  <script src="script.js"></script>
-</body>
-</html>
+	<!DOCTYPE html>
+	<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Reconocimiento de Dígitos</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<div class="container">
+			<h1>Reconocimiento de Dígitos</h1>
+			
+			<div class="input-section">
+				<div class="tabs">
+					<button class="tab-btn active" id="camera-tab">Cámara</button>
+					<button class="tab-btn" id="upload-tab">Subir imagen</button>
+				</div>
+				
+				<div class="tab-content" id="camera-content">
+					<div class="video-container">
+						<video id="video" autoplay playsinline></video>
+						<canvas id="canvas-overlay"></canvas>
+						<div class="capture-frame"></div>
+					</div>
+					<div class="controls">
+						<button id="capture-btn" class="action-btn">Capturar</button>
+						<button id="flip-camera" class="action-btn">Cambiar cámara</button>
+					</div>
+				</div>
+				
+				<div class="tab-content hidden" id="upload-content">
+					<div class="upload-area" id="drop-area">
+						<p>Arrastra una imagen aquí o</p>
+						<input type="file" id="file-input" accept="image/*">
+						<label for="file-input" class="file-label">Seleccionar archivo</label>
+					</div>
+				</div>
+			</div>
+			
+			<div class="preview-section hidden" id="preview-section">
+				<h2>Vista previa</h2>
+				<div class="preview-container">
+					<div class="original-preview">
+						<h3>Original</h3>
+						<img id="preview-img" src="#" alt="Imagen capturada">
+					</div>
+					<div class="processed-preview">
+						<h3>Procesada (28x28)</h3>
+						<canvas id="processed-canvas" width="28" height="28"></canvas>
+						<div class="processed-display">
+							<canvas id="display-canvas" width="140" height="140"></canvas>
+						</div>
+					</div>
+				</div>
+				<div class="result-container">
+					<h3>Predicción</h3>
+					<div id="prediction-result">-</div>
+					<div class="confidence-bars" id="confidence-container"></div>
+				</div>
+				<div class="controls">
+					<button id="process-btn" class="action-btn">Procesar</button>
+					<button id="back-btn" class="action-btn secondary">Volver</button>
+				</div>
+			</div>
+			
+			<div id="loading" class="loading hidden">
+				<div class="spinner"></div>
+				<p>Procesando...</p>
+			</div>
+		</div>
+		
+		<script src="script.js"></script>
+	</body>
+	</html>
